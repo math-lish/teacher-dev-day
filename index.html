@@ -6,6 +6,28 @@
     <title>🎓 25-26 LSC 第二次教師發展日 - 教學遊戲庫</title>
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        /* 設備支援標籤样式 */
+        .device-tags {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+        .device-tag {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+        }
+        .device-tag.computer-only {
+            background: #ff6b6b;
+            color: white;
+        }
+        .device-tag.mobile-supported {
+            background: #4ade80;
+            color: #000;
+        }
+    </style>
 </head>
 <body>
     <header class="hero">
@@ -19,6 +41,10 @@
                 <span class="tag">🔢 數學</span>
                 <span class="tag">🔬 科學</span>
                 <span class="tag">🎯 其他</span>
+            </div>
+            <div style="margin-top: 15px; padding: 10px 20px; background: rgba(255,255,255,0.1); border-radius: 10px; display: inline-block;">
+                <span style="margin-right: 15px;">💻 <strong>電腦</strong> - 所有遊戲都支援</span>
+                <span>📱 <strong>手機/iPad</strong> - 只支援以下遊戲：</span>
             </div>
         </div>
     </header>
@@ -39,104 +65,80 @@
             </div>
         </section>
 
-        <!-- 工作坊成果分享 -->
-        <div class="成果分享">
-            <h2 class="section-title">🎮 工作坊成果分享</h2>
-            <p class="section-desc">老師們使用 Gemini 創作既互動教學遊戲</p>
-        </div>
+        <!-- 數學遊戲 -->
+        <section class="category">
+            <h2 class="category-title">🔢 數學遊戲 <span class="count">(4個)</span></h2>
+            <div class="games-grid">
+                <a href="數學/乘法拔河-MultiplicationBattle.html" class="game-card" target="_blank">
+                    <div class="game-icon">⚡</div>
+                    <h3>乘法拔河</h3>
+                    <p>5秒極速心算生死戰</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="數學/比例金庫-RatioSafe.html" class="game-card" target="_blank">
+                    <div class="game-icon">🔐</div>
+                    <h3>比例金庫</h3>
+                    <p>破解銀行密碼</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="數學/矩陣爭奪戰-MatrixConquest.html" class="game-card" target="_blank">
+                    <div class="game-icon">🔢</div>
+                    <h3>矩陣爭奪戰</h3>
+                    <p>雙人對戰 GCD 遊戲</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="數學/12碼射門-PenaltyShootout.html" class="game-card" target="_blank">
+                    <div class="game-icon">⚽</div>
+                    <h3>12碼射門</h3>
+                    <p>座標挑戰遊戲</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+            </div>
+        </section>
 
         <!-- 中文遊戲 -->
         <section class="category">
-            <h2 class="category-title">📖 中文遊戲 <span class="count">(3個)</span></h2>
+            <h2 class="category-title">📖 中文遊戲 <span class="count">(4個)</span></h2>
             <div class="games-grid">
                 <a href="中文/基礎詞語配對-BasicVocabulary.html" class="game-card" target="_blank">
                     <div class="game-icon">🌟</div>
                     <h3>基礎詞語配對</h3>
                     <p>詞語拖曳配對</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
                 </a>
                 <a href="中文/成語大挑戰-IdiomChallenge.html" class="game-card" target="_blank">
                     <div class="game-icon">📚</div>
                     <h3>成語大挑戰</h3>
                     <p>自食其力 vs 自食其果</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="中文/空間介詞大冒險-SpatialPreposition.html" class="game-card" target="_blank">
+                    <div class="game-icon">🗺️</div>
+                    <h3>空間介詞大冒險</h3>
+                    <p>Spatial Preposition</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
                 </a>
                 <a href="中文/逍遙遊-ZhuangziPhilosophy.html" class="game-card" target="_blank">
                     <div class="game-icon">🎭</div>
                     <h3>逍遙遊</h3>
                     <p>莊子哲學：無用之用</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- 英語遊戲 -->
-        <section class="category">
-            <h2 class="category-title">📝 英語遊戲 <span class="count">(9個)</span></h2>
-            <div class="games-grid">
-                <a href="英語/介詞大師-PrepositionMaster.html" class="game-card" target="_blank">
-                    <div class="game-icon">🏆</div>
-                    <h3>介詞大師</h3>
-                    <p>Preposition Master - 拖放遊戲</p>
-                </a>
-                <a href="英語/介詞挑戰-PrepositionsGame.html" class="game-card" target="_blank">
-                    <div class="game-icon">📍</div>
-                    <h3>介詞挑戰</h3>
-                    <p>Drag & Drop + Fill in the blank</p>
-                </a>
-                <a href="英語/介詞配對-PrepositionMatch.html" class="game-card" target="_blank">
-                    <div class="game-icon">🎯</div>
-                    <h3>介詞配對</h3>
-                    <p>Preposition of Location 配對</p>
-                </a>
-                <a href="英語/空間介詞大冒險-SpatialPreposition.html" class="game-card" target="_blank">
-                    <div class="game-icon">🗺️</div>
-                    <h3>空間介詞大冒險</h3>
-                    <p>Spatial Preposition - 空間介詞學習</p>
-                </a>
-                <a href="英語/位置探索-LocationFinder.html" class="game-card" target="_blank">
-                    <div class="game-icon">🗺️</div>
-                    <h3>位置探索</h3>
-                    <p>Location Finder - 2 Levels</p>
-                </a>
-                <a href="英語/單詞配對-WordMatchMobile.html" class="game-card" target="_blank">
-                    <div class="game-icon">📝</div>
-                    <h3>單詞配對</h3>
-                    <p>Word Match Mobile - 拖放配對</p>
-                </a>
-                <a href="英語/方位挑戰-PrepositionAdventure.html" class="game-card" target="_blank">
-                    <div class="game-icon">📐</div>
-                    <h3>方位挑戰</h3>
-                    <p>Preposition Adventure - 空間介詞</p>
-                </a>
-                <a href="英語/英文單詞配對-EnglishWordMatch.html" class="game-card" target="_blank">
-                    <div class="game-icon">🍎</div>
-                    <h3>英文單詞配對</h3>
-                    <p>English Word Match - 圖文配對</p>
-                </a>
-                <a href="英語/間接引語-ReportedSpeech.html" class="game-card" target="_blank">
-                    <div class="game-icon">💬</div>
-                    <h3>間接引語</h3>
-                    <p>Reported Speech Challenge</p>
-                </a>
-            </div>
-        </section>
-
-        <!-- 數學遊戲 -->
-        <section class="category">
-            <h2 class="category-title">🔢 數學遊戲 <span class="count">(3個)</span></h2>
-            <div class="games-grid">
-                <a href="數學/乘法拔河-MultiplicationBattle.html" class="game-card" target="_blank">
-                    <div class="game-icon">⚡</div>
-                    <h3>乘法拔河</h3>
-                    <p>5秒極速乘法對決</p>
-                </a>
-                <a href="數學/比例金庫-RatioSafe.html" class="game-card" target="_blank">
-                    <div class="game-icon">🔐</div>
-                    <h3>比例金庫</h3>
-                    <p>破解密碼學比例</p>
-                </a>
-                <a href="數學/矩陣爭奪戰-MatrixConquest.html" class="game-card" target="_blank">
-                    <div class="game-icon">🔢</div>
-                    <h3>矩陣爭奪戰</h3>
-                    <p>最大公因數策略遊戲</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
                 </a>
             </div>
         </section>
@@ -145,35 +147,109 @@
         <section class="category">
             <h2 class="category-title">🔬 科學遊戲 <span class="count">(2個)</span></h2>
             <div class="games-grid">
-                <a href="科學/科學知識挑戰-ScienceQuiz.html" class="game-card" target="_blank">
-                    <div class="game-icon">🧪</div>
-                    <h3>科學知識挑戰</h3>
-                    <p>物理、化學、生物選擇題</p>
-                </a>
                 <a href="科學/中學科學挑戰-SecondaryScience.html" class="game-card" target="_blank">
                     <div class="game-icon">🔬</div>
                     <h3>中學科學挑戰</h3>
-                    <p>中學科學知識測驗</p>
+                    <p>Science Quiz Game</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="科學/科學知識挑戰-ScienceQuiz.html" class="game-card" target="_blank">
+                    <div class="game-icon">💡</div>
+                    <h3>科學知識挑戰</h3>
+                    <p>科學問答遊戲</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
                 </a>
             </div>
         </section>
 
-        <!-- 其他遊戲 -->
+        <!-- 英語遊戲 -->
         <section class="category">
-            <h2 class="category-title">🎯 其他遊戲 <span class="count">(1個)</span></h2>
+            <h2 class="category-title">📝 英語遊戲 <span class="count">(8個)</span></h2>
             <div class="games-grid">
-                <a href="數學/12碼射門-PenaltyShootout.html" class="game-card" target="_blank">
-                    <div class="game-icon">⚽</div>
-                    <h3>足球射門挑戰</h3>
-                    <p>12碼射門遊戲</p>
+                <a href="英語/介詞大師-PrepositionMaster.html" class="game-card" target="_blank">
+                    <div class="game-icon">🏆</div>
+                    <h3>介詞大師</h3>
+                    <p>Preposition Master</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="英語/介詞挑戰-PrepositionsGame.html" class="game-card" target="_blank">
+                    <div class="game-icon">📍</div>
+                    <h3>介詞挑戰</h3>
+                    <p>Drag & Drop + Fill</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="英語/介詞配對-PrepositionMatch.html" class="game-card" target="_blank">
+                    <div class="game-icon">🎯</div>
+                    <h3>介詞配對</h3>
+                    <p>Preposition of Location</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="英語/空間介詞大冒險-SpatialPreposition.html" class="game-card" target="_blank">
+                    <div class="game-icon">🗺️</div>
+                    <h3>空間介詞大冒險</h3>
+                    <p>Spatial Preposition</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="英語/位置探索-LocationFinder.html" class="game-card" target="_blank">
+                    <div class="game-icon">🔍</div>
+                    <h3>位置探索</h3>
+                    <p>Location Finder - 2 Levels</p>
+                    <div class="device-tags">
+                        <span class="device-tag mobile-supported">📱 iPad/手機</span>
+                    </div>
+                </a>
+                <a href="英語/單詞配對-WordMatchMobile.html" class="game-card" target="_blank">
+                    <div class="game-icon">📝</div>
+                    <h3>單詞配對</h3>
+                    <p>Word Match Mobile</p>
+                    <div class="device-tags">
+                        <span class="device-tag mobile-supported">📱 iPad/手機</span>
+                    </div>
+                </a>
+                <a href="英語/英文單詞配對-EnglishWordMatch.html" class="game-card" target="_blank">
+                    <div class="game-icon">🍎</div>
+                    <h3>英文單詞配對</h3>
+                    <p>English Word Match</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
+                </a>
+                <a href="英語/間接引語-ReportedSpeech.html" class="game-card" target="_blank">
+                    <div class="game-icon">💬</div>
+                    <h3>間接引語</h3>
+                    <p>Reported Speech</p>
+                    <div class="device-tags">
+                        <span class="device-tag computer-only">💻 電腦專用</span>
+                    </div>
                 </a>
             </div>
         </section>
+
+        <!-- 底部說明 -->
+        <div style="text-align: center; padding: 30px; opacity: 0.8;">
+            <p>📱 <strong>手機/iPad 用戶</strong>：目前只有以下遊戲支援觸控</p>
+            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 15px;">
+                <span style="background: #4ade80; color: #000; padding: 8px 16px; border-radius: 20px;">📍 位置探索</span>
+                <span style="background: #4ade80; color: #000; padding: 8px 16px; border-radius: 20px;">📝 單詞配對</span>
+            </div>
+            <p style="margin-top: 20px; color: #ff6b6b;">❌ 其他遊戲需要使用電腦 (Windows/Mac)</p>
+        </div>
     </main>
 
     <footer>
-        <p>🎓 教學遊戲庫 - 由 AI 助手協助製作</p>
-        <p class="credit">用 ❤️ 整於 2026 Teacher Development Day</p>
+        <p>🎓 25-26 LSC 第二次教師發展日 | Made with 💙 by AI</p>
     </footer>
 </body>
 </html>
