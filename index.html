@@ -1,373 +1,179 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-HK">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OpenClaw 數學故事系統</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        
-        .logo {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        
-        h1 {
-            color: #2d3748;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-        
-        .subtitle {
-            color: #4a5568;
-            font-size: 1.2rem;
-            margin-bottom: 30px;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            min-width: 200px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            text-align: center;
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #718096;
-            font-size: 0.9rem;
-        }
-        
-        .main-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            margin-bottom: 40px;
-        }
-        
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .card:hover {
-            transform: translateY(-5px);
-        }
-        
-        .card h2 {
-            color: #2d3748;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 3px solid #667eea;
-        }
-        
-        .feature-list {
-            list-style: none;
-        }
-        
-        .feature-list li {
-            padding: 10px 0;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .feature-list li:before {
-            content: "✓";
-            color: #48bb78;
-            font-weight: bold;
-            margin-right: 10px;
-        }
-        
-        .story-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .story-card {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            border-left: 5px solid #667eea;
-        }
-        
-        .story-card h3 {
-            color: #2d3748;
-            margin-bottom: 10px;
-        }
-        
-        .story-category {
-            display: inline-block;
-            background: #e9d8fd;
-            color: #6b46c1;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 10px;
-        }
-        
-        .story-difficulty {
-            display: inline-block;
-            background: #c6f6d5;
-            color: #276749;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-left: 5px;
-        }
-        
-        footer {
-            text-align: center;
-            padding: 30px;
-            color: white;
-            margin-top: 40px;
-        }
-        
-        .telegram-btn {
-            display: inline-block;
-            background: #0088cc;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-top: 20px;
-            transition: background 0.3s ease;
-        }
-        
-        .telegram-btn:hover {
-            background: #006699;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            header {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .stats {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .stat-card {
-                width: 100%;
-                max-width: 300px;
-            }
-        }
-    </style>
+    <title>🎓 25-26 LSC 第二次教師發展日 - 教學遊戲庫</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">🦀</div>
-            <h1>OpenClaw 數學故事系統</h1>
-            <p class="subtitle">為香港數學教師 Zach 開發的智能數學故事自動化系統</p>
-            
-            <div class="stats">
-                <div class="stat-card">
-                    <div class="stat-number">15</div>
-                    <div class="stat-label">數學故事</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">自動化</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">07:00</div>
-                    <div class="stat-label">每日發送</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-number">44</div>
-                    <div class="stat-label">系統檔案</div>
-                </div>
-            </div>
-        </header>
-        
-        <div class="main-content">
-            <div class="card">
-                <h2>📖 系統介紹</h2>
-                <p>這是一個為香港中學數學教師 Zach 開發的智能數學故事自動化系統。系統每天07:00自動發送數學故事到Apple備忘錄，並同步到iPhone。</p>
-                
-                <ul class="feature-list">
-                    <li>15個真實數學故事</li>
-                    <li>自動避免內容重複</li>
-                    <li>優化的備忘錄排版</li>
-                    <li>launchd定時任務</li>
-                    <li>智能擴充機制</li>
-                    <li>Telegram通知系統</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h2>🚀 核心功能</h2>
-                <ul class="feature-list">
-                    <li>每日07:00自動發送數學故事</li>
-                    <li>Apple備忘錄自動同步</li>
-                    <li>內容永不重複機制</li>
-                    <li>使用率監控與自動擴充</li>
-                    <li>格式優化（備忘錄友好）</li>
-                    <li>完整的錯誤處理和日誌</li>
-                    <li>Telegram更新通知</li>
-                    <li>網站成果展示</li>
-                </ul>
-            </div>
-            
-            <div class="card">
-                <h2>📱 技術架構</h2>
-                <ul class="feature-list">
-                    <li>Python 3 自動化腳本</li>
-                    <li>AppleScript 控制備忘錄</li>
-                    <li>macOS launchd 定時系統</li>
-                    <li>JSON 數據庫管理</li>
-                    <li>HTML/CSS/JavaScript 網站</li>
-                    <li>GitHub Pages 部署</li>
-                    <li>Telegram Bot API 通知</li>
-                </ul>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>🎓 25-26 LSC 第二次教師發展日</h1>
+            <p class="subtitle">AI 教學工具工作坊 - 互動教材分享</p>
+            <div class="tags">
+                <span class="tag">🎓 教師培訓</span>
+                <span class="tag">📖 中文</span>
+                <span class="tag">📝 英語</span>
+                <span class="tag">🔢 數學</span>
+                <span class="tag">🔬 科學</span>
+                <span class="tag">🎯 其他</span>
             </div>
         </div>
-        
-        <div class="card">
-            <h2>📚 數學故事庫</h2>
-            <div class="story-grid" id="stories-container">
-                <!-- 故事將由JavaScript動態加載 -->
-            </div>
-        </div>
-        
-        <div class="card">
-            <h2>🔗 快速連結</h2>
-            <div style="text-align: center; margin-top: 20px;">
-                <a href="https://t.me/" class="telegram-btn" target="_blank">
-                    📱 接收Telegram通知
+    </header>
+
+    <main>
+        <!-- 教師培訓工作坊 (置頂) -->
+        <section class="category featured">
+            <h2 class="category-title">🎓 教師培訓工作坊</h2>
+            <div class="featured-card">
+                <a href="enhanced_workshop_slides.html" class="featured-link" target="_blank">
+                    <div class="featured-icon">📊</div>
+                    <div class="featured-content">
+                        <h3>AI 教學工具工作坊</h3>
+                        <p>Gemini 製作互動教材 - 示範與教學</p>
+                        <span class="click-hint">Click 前往查看 →</span>
+                    </div>
                 </a>
-                <p style="margin-top: 15px; color: #4a5568;">
-                    網站更新時自動收到通知
-                </p>
             </div>
+        </section>
+
+        <!-- 工作坊成果分享 -->
+        <div class="成果分享">
+            <h2 class="section-title">🎮 工作坊成果分享</h2>
+            <p class="section-desc">老師們使用 Gemini 創作既互動教學遊戲</p>
         </div>
-    </div>
-    
+
+        <!-- 中文遊戲 -->
+        <section class="category">
+            <h2 class="category-title">📖 中文遊戲 <span class="count">(3個)</span></h2>
+            <div class="games-grid">
+                <a href="中文/基礎詞語配對-BasicVocabulary.html" class="game-card" target="_blank">
+                    <div class="game-icon">🌟</div>
+                    <h3>基礎詞語配對</h3>
+                    <p>詞語拖曳配對</p>
+                </a>
+                <a href="中文/成語大挑戰-IdiomChallenge.html" class="game-card" target="_blank">
+                    <div class="game-icon">📚</div>
+                    <h3>成語大挑戰</h3>
+                    <p>自食其力 vs 自食其果</p>
+                </a>
+                <a href="中文/逍遙遊-ZhuangziPhilosophy.html" class="game-card" target="_blank">
+                    <div class="game-icon">🎭</div>
+                    <h3>逍遙遊</h3>
+                    <p>莊子哲學：無用之用</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 英語遊戲 -->
+        <section class="category">
+            <h2 class="category-title">📝 英語遊戲 <span class="count">(9個)</span></h2>
+            <div class="games-grid">
+                <a href="英語/介詞大師-PrepositionMaster.html" class="game-card" target="_blank">
+                    <div class="game-icon">🏆</div>
+                    <h3>介詞大師</h3>
+                    <p>Preposition Master - 拖放遊戲</p>
+                </a>
+                <a href="英語/介詞挑戰-PrepositionsGame.html" class="game-card" target="_blank">
+                    <div class="game-icon">📍</div>
+                    <h3>介詞挑戰</h3>
+                    <p>Drag & Drop + Fill in the blank</p>
+                </a>
+                <a href="英語/介詞配對-PrepositionMatch.html" class="game-card" target="_blank">
+                    <div class="game-icon">🎯</div>
+                    <h3>介詞配對</h3>
+                    <p>Preposition of Location 配對</p>
+                </a>
+                <a href="英語/空間介詞大冒險-SpatialPreposition.html" class="game-card" target="_blank">
+                    <div class="game-icon">🗺️</div>
+                    <h3>空間介詞大冒險</h3>
+                    <p>Spatial Preposition - 空間介詞學習</p>
+                </a>
+                <a href="英語/位置探索-LocationFinder.html" class="game-card" target="_blank">
+                    <div class="game-icon">🗺️</div>
+                    <h3>位置探索</h3>
+                    <p>Location Finder - 2 Levels</p>
+                </a>
+                <a href="英語/單詞配對-WordMatchMobile.html" class="game-card" target="_blank">
+                    <div class="game-icon">📝</div>
+                    <h3>單詞配對</h3>
+                    <p>Word Match Mobile - 拖放配對</p>
+                </a>
+                <a href="英語/方位挑戰-PrepositionAdventure.html" class="game-card" target="_blank">
+                    <div class="game-icon">📐</div>
+                    <h3>方位挑戰</h3>
+                    <p>Preposition Adventure - 空間介詞</p>
+                </a>
+                <a href="英語/英文單詞配對-EnglishWordMatch.html" class="game-card" target="_blank">
+                    <div class="game-icon">🍎</div>
+                    <h3>英文單詞配對</h3>
+                    <p>English Word Match - 圖文配對</p>
+                </a>
+                <a href="英語/間接引語-ReportedSpeech.html" class="game-card" target="_blank">
+                    <div class="game-icon">💬</div>
+                    <h3>間接引語</h3>
+                    <p>Reported Speech Challenge</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 數學遊戲 -->
+        <section class="category">
+            <h2 class="category-title">🔢 數學遊戲 <span class="count">(3個)</span></h2>
+            <div class="games-grid">
+                <a href="數學/乘法拔河-MultiplicationBattle.html" class="game-card" target="_blank">
+                    <div class="game-icon">⚡</div>
+                    <h3>乘法拔河</h3>
+                    <p>5秒極速乘法對決</p>
+                </a>
+                <a href="數學/比例金庫-RatioSafe.html" class="game-card" target="_blank">
+                    <div class="game-icon">🔐</div>
+                    <h3>比例金庫</h3>
+                    <p>破解密碼學比例</p>
+                </a>
+                <a href="數學/矩陣爭奪戰-MatrixConquest.html" class="game-card" target="_blank">
+                    <div class="game-icon">🔢</div>
+                    <h3>矩陣爭奪戰</h3>
+                    <p>最大公因數策略遊戲</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 科學遊戲 -->
+        <section class="category">
+            <h2 class="category-title">🔬 科學遊戲 <span class="count">(2個)</span></h2>
+            <div class="games-grid">
+                <a href="科學/科學知識挑戰-ScienceQuiz.html" class="game-card" target="_blank">
+                    <div class="game-icon">🧪</div>
+                    <h3>科學知識挑戰</h3>
+                    <p>物理、化學、生物選擇題</p>
+                </a>
+                <a href="科學/中學科學挑戰-SecondaryScience.html" class="game-card" target="_blank">
+                    <div class="game-icon">🔬</div>
+                    <h3>中學科學挑戰</h3>
+                    <p>中學科學知識測驗</p>
+                </a>
+            </div>
+        </section>
+
+        <!-- 其他遊戲 -->
+        <section class="category">
+            <h2 class="category-title">🎯 其他遊戲 <span class="count">(1個)</span></h2>
+            <div class="games-grid">
+                <a href="數學/12碼射門-PenaltyShootout.html" class="game-card" target="_blank">
+                    <div class="game-icon">⚽</div>
+                    <h3>足球射門挑戰</h3>
+                    <p>12碼射門遊戲</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
     <footer>
-        <p>© 2026 OpenClaw AI助手 | 為 Zach 的數學教學而建</p>
-        <p>最後更新: <span id="last-update">2026-03-03 17:20</span></p>
+        <p>🎓 教學遊戲庫 - 由 AI 助手協助製作</p>
+        <p class="credit">用 ❤️ 整於 2026 Teacher Development Day</p>
     </footer>
-
-    <script>
-        // 數學故事數據
-        const mathStories = [
-            { title: "零的誕生", category: "數學歷史", difficulty: "初級", description: "數字0的發明歷史" },
-            { title: "費馬最後定理", category: "數論", difficulty: "高級", description: "358年才被證明的定理" },
-            { title: "圓周率π的歷史", category: "數學常數", difficulty: "中級", description: "π的計算歷史" },
-            { title: "黃金比例φ", category: "數學美學", difficulty: "中級", description: "自然界中的完美比例" },
-            { title: "質數的奧秘", category: "數論", difficulty: "中級", description: "密碼學的基礎" },
-            { title: "斐波那契數列", category: "數列", difficulty: "初級", description: "自然界中的數學" },
-            { title: "歐拉公式", category: "數學公式", difficulty: "高級", description: "數學中最美的公式" },
-            { title: "四色定理", category: "圖論", difficulty: "中級", description: "計算機證明的定理" },
-            { title: "混沌理論", category: "應用數學", difficulty: "高級", description: "蝴蝶效應" },
-            { title: "博弈論", category: "應用數學", difficulty: "中級", description: "囚徒困境" },
-            { title: "雞兔同籠問題", category: "古典數學", difficulty: "初級", description: "中國古代數學問題" },
-            { title: "七橋問題", category: "圖論", difficulty: "中級", description: "圖論的起源" },
-            { title: "漢諾塔問題", category: "算法", difficulty: "中級", description: "經典遞歸問題" },
-            { title: "蒙提霍爾問題", category: "概率論", difficulty: "中級", description: "概率悖論" },
-            { title: "生日悖論", category: "概率論", difficulty: "中級", description: "反直覺的概率" }
-        ];
-
-        // 渲染故事卡片
-        function renderStories() {
-            const container = document.getElementById('stories-container');
-            container.innerHTML = '';
-            
-            mathStories.forEach(story => {
-                const card = document.createElement('div');
-                card.className = 'story-card';
-                card.innerHTML = `
-                    <div class="story-category">${story.category}</div>
-                    <div class="story-difficulty">${story.difficulty}</div>
-                    <h3>${story.title}</h3>
-                    <p>${story.description}</p>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // 更新最後更新時間
-        function updateLastModified() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: '2-digit', 
-                day: '2-digit',
-                hour: '2-digit',
-                minute: '2-digit',
-                hour12: false
-            };
-            document.getElementById('last-update').textContent = 
-                now.toLocaleString('zh-Hant', options).replace(/\//g, '-');
-        }
-
-        // 初始化
-        document.addEventListener('DOMContentLoaded', () => {
-            renderStories();
-            updateLastModified();
-            
-            // 每分鐘更新一次時間
-            setInterval(updateLastModified, 60000);
-        });
-    </script>
 </body>
 </html>
