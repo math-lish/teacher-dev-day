@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI助力教學：用Gemini+Google Sites製作互動小遊戲</title>
+    <style>
+        :root {
+            --google-blue: #4285F4;
+            --gemini-yellow: #FBBC04;
+            --success-green: #34A853;
+            --light-gray: #F8F9FA;
+            --dark-gray: #5F6368;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, var(--light-gray) 0%, #ffffff 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        /* 封面頁樣式 */
+        .cover-page {
+            background: linear-gradient(135deg, var(--google-blue) 0%, #1a73e8 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+        
+        .cover-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .cover-subtitle {
+            font-size: 1.8rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: var(--google-blue);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .presenter-info {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-top: 30px;
+        }
+        
+        /* 內容頁樣式 */
+        .content-page {
+            padding: 50px 40px;
+        }
+        
+        .page-title {
+            color: var(--google-blue);
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--gemini-yellow);
+        }
+        
+        .learning-objectives {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+        
+        .objective-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border-left: 5px solid var(--success-green);
+        }
+        
+        .objective-icon {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            color: var(--google-blue);
+        }
+        
+        /* 步驟演示樣式 */
+        .step-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .step-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border: 2px solid var(--light-gray);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            border-color: var(--google-blue);
+        }
+        
+        .step-number {
+            display: inline-block;
+            background: var(--google-blue);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .step-title {
+            color: var(--dark-gray);
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        /* 提示語示例樣式 */
+        .prompt-example {
+            background: #f1f3f4;
+            border-left: 5px solid var(--gemini-yellow);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+        }
+        
+        /* 互動元素樣式 */
+        .interactive-section {
+            background: linear-gradient(135deg, #e8f0fe 0%, #fce8e6 100%);
+            padding: 40px;
+            border-radius: 20px;
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .timer {
+            font-size: 4rem;
+            color: var(--google-blue);
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        
+        .action-button {
+            background: var(--google-blue);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 10px;
+        }
+        
+        .action-button:hover {
+            background: #1a73e8;
+            transform: scale(1.05);
+        }
+        
+        /* 響應式設計 */
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 2.5rem;
+            }
+            
+            .cover-subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+            
+            .content-page {
+                padding: 30px 20px;
+            }
+            
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 動畫效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        
+        /* 導航指示器 */
+        .progress-indicator {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px 15px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            font-weight: bold;
+            color: var(--google-blue);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 封面頁 -->
+        <section class="cover-page fade-in">
+            <h1 class="cover-title">🎮 AI助力教學</h1>
+            <h2 class="cover-subtitle">用Gemini + Google Sites製作互動小遊戲</h2>
+            
+            <div class="logo-container">
+                <div class="logo">🤖</div>
+                <div class="logo">+</div>
+                <div class="logo">🌐</div>
+            </div>
+            
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">讓AI成為你的教學助手，創造有趣學習體驗</p>
+            
+            <div class="presenter-info">
+                <h3>教學工作坊</h3>
+                <p>AI工具應用於教學</p>
+                <p>📅 2026年3月3日</p>
+            </div>
+        </section>
+        
+        <!-- 工具連結 -->
+        <section class="content-page fade-in">
+            <h2 class="page-title">🔗 工具連結</h2>
+            
+            <div class="step-container">
+                <div class="step-card" onclick="window.open('https://sites.google.com/', '_blank')">
+                    <div class="step-number">🌐</div>
+                    <h3 class="step-title">Google Sites</h3>
+                    <p>創建和分享教學網站</p>
+                    <p style="color: var(--google-blue); margin-top: 10px;">點擊打開</p>
+                </div>
+                
+                <div class="step-card" onclick="window.open('https://gemini.google.com/', '_blank')">
+                    <div class="step-number">🤖</div>
+                    <h3 class="step-title">Gemini</h3>
+                    <p>AI助手生成遊戲代碼</p>
+                    <p style="color: var(--google-blue); margin-top: 10px;">點擊打開</p>
+                </div>
+                
+                <div class="step-card" onclick="window.open('https://docs.google.com/presentation/d/1Bt9KTGOemm_n8lG6SDPtuFISDZ7CB9BGJPyS_vBpi7g/edit?usp=sharing', '_blank')">
+                    <div class="step-number">📊</div>
+                    <h3 class="step-title">教學簡報</h3>
+                    <p>完整教學步驟與資源</p>
+                    <p style="color: var(--google-blue); margin-top: 10px;">點擊打開</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 提示語模板 -->
+        <section class="content-page fade-in">
+            <h2 class="page-title">💬 三種風格提示語</h2>
+            
+            <div class="step-container">
+                <div class="step-card" onclick="copyToClipboard('數學乘法遊戲')">
+                    <div class="step-number">🔢</div>
+                    <h3 class="step-title">數學遊戲</h3>
+                    <p>10道隨機乘法題，即時反饋</p>
+                    <button class="copy-btn" style="margin-top: 10px;">點擊複製</button>
+                </div>
+                
+                <div class="step-card" onclick="copyToClipboard('英文單詞配對遊戲')">
+                    <div class="step-number">🔤</div>
+                    <h3 class="step-title">語言遊戲</h3>
+                    <p>單詞與圖片拖放配對</p>
+                    <button class="copy-btn" style="margin-top: 10px;">點擊複製</button>
+                </div>
+                
+                <div class="step-card" onclick="copyToClipboard('科學知識問答遊戲')">
+                    <div class="step-number">🧪</div>
+                    <h3 class="step-title">科學遊戲</h3>
+                    <p>選擇題形式，包含解釋</p>
+                    <button class="copy-btn" style="margin-top: 10px;">點擊複製</button>
+                </div>
+            </div>
+            
+            <div style="margin-top: 30px; text-align: center;">
+                <p>點擊上方卡片複製提示語，貼到Gemini使用</p>
+            </div>
+        </section>
+        
+        <!-- 簡化步驟 -->
+        <section class="content-page fade-in">
+            <h2 class="page-title">🚀 四步完成</h2>
+            
+            <div class="step-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">開Gemini</h3>
+                    <p>點擊上方Gemini連結</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">複製提示語</h3>
+                    <p>點擊上方卡片複製</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">貼到Gemini</h3>
+                    <p>等待生成遊戲代碼</p>
+                </div>
+                
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">嵌入網站</h3>
+                    <p>在Google Sites嵌入代碼</p>
+                </div>
+            </div>
+        </section>
+        
+
+        
+        <!-- 小組練習 -->
+        <section class="interactive-section fade-in">
+            <h2 style="color: var(--google-blue); font-size: 2rem; margin-bottom: 20px;">🔄 小組練習時間</h2>
+            
+            <div class="timer" id="countdown">15:00</div>
+            
+            <div style="max-width: 600px; margin: 0 auto; text-align: left;">
+                <h3 style="margin-bottom: 15px;">📋 練習任務：</h3>
+                <ol style="margin-bottom: 25px; padding-left: 20px;">
+                    <li style="margin-bottom: 10px;">分組（2-3人一組）</li>
+                    <li style="margin-bottom: 10px;">選擇一個教學主題</li>
+                    <li style="margin-bottom: 10px;">使用Gemini生成相應遊戲</li>
+                    <li style="margin-bottom: 10px;">嵌入到Google Sites</li>
+                    <li style="margin-bottom: 10px;">分享連結給其他組</li>
+                </ol>
+                
+                <button class="action-button" onclick="startTimer()">開始計時</button>
+                <button class="action-button" onclick="resetTimer()" style="background: var(--dark-gray);">重置計時</button>
+            </div>
+        </section>
+        
+
+        
+        <!-- 簡化結尾 -->
+        <section class="content-page fade-in" style="text-align: center;">
+            <h2 class="page-title">🎉 開始創作！</h2>
+            
+            <div style="margin: 40px 0;">
+                <p style="font-size: 1.2rem; margin-bottom: 30px;">使用上方工具和提示語，立即創建你的教學遊戲</p>
+                
+                <button class="action-button" onclick="window.open('https://gemini.google.com/', '_blank')">
+                    🤖 打開Gemini
+                </button>
+                
+                <button class="action-button" onclick="window.open('https://sites.google.com/', '_blank')" style="background: var(--success-green);">
+                    🌐 打開Google Sites
+                </button>
+            </div>
+            
+            <div style="background: var(--light-gray); padding: 20px; border-radius: 15px; max-width: 600px; margin: 0 auto;">
+                <p>💡 提示：點擊上方卡片複製提示語，貼到Gemini使用</p>
+                <p>⏱️ 小組練習時使用下方計時器</p>
+            </div>
+        </section>
+    </div>
+    
+    <div class="progress-indicator">
+        頁面 1/7
+    </div>
+
+    <script>
+        // 計時器功能
+        let timerInterval;
+        let timeLeft = 15 * 60; // 15分鐘
+        
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+        
+        function updateTimer() {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+                document.getElementById('countdown').textContent = "時間到！";
+                document.getElementById('countdown').style.color = "#EA4335";
+                return;
+            }
+            
+            timeLeft--;
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            document.getElementById('countdown').textContent = 
+                `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 15 * 60;
+            document.getElementById('countdown').textContent = "15:00";
+            document.getElementById('countdown').style.color = "#4285F4";
+        }
+        
+        // 頁面滾動指示器
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section');
+            const scrollPosition = window.scrollY + 100;
+            
+            let currentSection = 0;
+            sections.forEach((section, index) => {
+                if (section.offsetTop <= scrollPosition) {
+                    currentSection = index + 1;
+                }
+            });
+            
+            document.querySelector('.progress-indicator').textContent = 
+                `頁面 ${currentSection}/${sections.length}`;
+        });
+        
+        // 滾動動畫
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+        
+        // 觀察所有section
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // 複製到剪貼板功能
+        function copyToClipboard(textType) {
+            let text = '';
+            
+            // 根據類型設置完整提示語
+            switch(textType) {
+                case '數學乘法遊戲':
+                    text = `請創建一個數學乘法練習遊戲，要求：
+1. 10道隨機題目（1-12乘法表）
+2. 即時反饋對錯（正確綠色，錯誤紅色）
+3. 分數計算和顯示
+4. 響應式設計（支持手機和電腦）
+5. 使用HTML+JavaScript，無需外部庫
+6. 美觀的界面，適合小學生
+7. 包含重新開始按鈕
+8. 答對時有鼓勵動畫
+
+請提供完整的HTML代碼，包含CSS樣式。`;
+                    break;
+                    
+                case '英文單詞配對遊戲':
+                    text = `請創建一個英文單詞配對遊戲，要求：
+1. 10個常見英文單詞與對應圖片配對
+2. 拖放功能（Drag & Drop API）
+3. 即時反饋配對結果
+4. 計時功能（60秒挑戰）
+5. 得分系統
+6. 響應式設計
+7. 使用HTML+CSS+JavaScript
+8. 適合初學英文學生
+
+請提供完整的HTML代碼。`;
+                    break;
+                    
+                case '科學知識問答遊戲':
+                    text = `請創建一個科學知識問答遊戲，要求：
+1. 10道科學選擇題（物理、化學、生物）
+2. 每題4個選項
+3. 即時顯示答案和解釋
+4. 進度條顯示答題進度
+5. 最終得分和評語
+6. 可重新開始
+7. 響應式設計
+8. 適合中學生
+
+請提供完整的HTML代碼。`;
+                    break;
+            }
+            
+            navigator.clipboard.writeText(text).then(() => {
+                alert('✅ 已複製提示語到剪貼板\n\n現在可以貼到Gemini使用了！');
+            }).catch(err => {
+                // 降級方案
+                const textarea = document.createElement('textarea');
+                textarea.value = text;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                alert('✅ 已複製提示語到剪貼板\n\n現在可以貼到Gemini使用了！');
+            });
+        }
+        
+        // 初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('互動式教學頁面已加載');
+        });
+    </script>
+</body>
+</html>
